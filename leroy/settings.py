@@ -1,4 +1,4 @@
-# Scrapy settings for avitoparser project
+# Scrapy settings for leroy project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'avitoparser'
+BOT_NAME = 'leroy'
 
-SPIDER_MODULES = ['avitoparser.spiders']
-NEWSPIDER_MODULE = 'avitoparser.spiders'
+SPIDER_MODULES = ['leroy.spiders']
+NEWSPIDER_MODULE = 'leroy.spiders'
 
 LOG_ENABLED = True
 LOG_LEVEL = 'DEBUG'
@@ -20,8 +20,7 @@ IMAGES_THUMBS = {'small': (160, 120),
                  'medium': (320, 240)}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) ' \
-             'Chrome/92.0.4515.131 Safari/537.36 '
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -52,13 +51,13 @@ COOKIES_ENABLED = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'avitoparser.middlewares.AvitoparserSpiderMiddleware': 543,
+#    'leroy.middlewares.LeroySpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'avitoparser.middlewares.AvitoparserDownloaderMiddleware': 543,
+#    'leroy.middlewares.LeroyDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -70,9 +69,9 @@ COOKIES_ENABLED = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'avitoparser.pipelines.AvitoparserPipeline': 300,
-   'avitoparser.pipelines.AvitoPhotosPipeline': 200,
-}
+   'leroy.pipelines.LeroyPhotoPipeline': 100,
+   'leroy.pipelines.LeroyPipeline': 300,
+   }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

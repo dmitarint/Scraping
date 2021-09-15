@@ -5,16 +5,22 @@
 
 
 # useful for handling different item types with a single interface
-import scrapy
 from itemadapter import ItemAdapter
+import scrapy
 from scrapy.pipelines.images import ImagesPipeline
+from pymongo import MongoClient
 
-class AvitoparserPipeline:
+class LeroyPipeline:
+    def __init__(self):
+        client = MongoClient('localhost', 27017)
+        self.mongo_base = client['LM']
     def process_item(self, item, spider):
-        print()
+        collection = self.mongo_base[spider.name]
+        collection.insert_one(item)
         return item
 
-class AvitoPhotosPipeline(ImagesPipeline):
+
+class LeroyPhotoPipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
         if item['photos']:
             for img in item['photos']:
@@ -23,12 +29,7 @@ class AvitoPhotosPipeline(ImagesPipeline):
                 except Exception as e:
                     print(e)
 
-    # def file_path(self, request, response=None, info=None, *, item=None):
-    #     pass
-
     def item_completed(self, results, item, info):
         if results:
             item['photos'] = [itm[1] for itm in results if itm[0]]
         return item
-
-
